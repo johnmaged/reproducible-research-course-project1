@@ -108,9 +108,21 @@ For this part of the assignment, you can ignore the missing values in
 the dataset.
 
 1. Make a histogram of the total number of steps taken each day
+```
+steps <- activity %>%
+  filter(!is.na(steps)) %>%
+  group_by(date) %>%
+  summarize(steps = sum(steps)) %>%
+  print
+  
+ggplot(steps, aes(x=date, y=steps))+geom_histogram(stat="identity")+ xlab("Dates")+ ylab("Steps")+ labs(title= "Total numbers of Steps per day")
+```
 
 2. Calculate and report the **mean** and **median** total number of steps taken per day
-
+```
+mean(total.steps)
+median(total.steps)
+```
 
 ### What is the average daily activity pattern?
 
