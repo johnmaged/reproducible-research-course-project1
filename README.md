@@ -79,9 +79,28 @@ assignment so you do not have to download the data separately.
 Show any code that is needed to
 
 1. Load the data (i.e. `read.csv()`)
+```
+setwd("E:\\repdata_data_activity")
+activity <- read.csv("activity.csv", header = T, sep = ",")
+```
 
 2. Process/transform the data (if necessary) into a format suitable for your analysis
+```
+dim(activity)
+head(activity)
+tail(activity)
+summary(activity)
+names(activity)
+str(activity)
 
+library(plyr)
+library(dplyr)
+library(lubridate)
+library(ggplot2)
+
+total.steps <- tapply(activity$steps, activity$date, FUN = sum, na.rm = TRUE)
+activity$date <- ymd(activity$date)
+```
 
 ### What is mean total number of steps taken per day?
 
