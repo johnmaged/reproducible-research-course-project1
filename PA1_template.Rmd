@@ -2,14 +2,14 @@
 
 ## Loading and preprocessing the data
 ```{r loaddata}
-unzip(zipfile="activity.zip")
-data <- read.csv("activity.csv")
+setwd("E:\\repdata_data_activity")
+activity <- read.csv("activity.csv", header = T, sep = ",")
 ```
 
 ## What is mean total number of steps taken per day?
 ```{r}
 library(ggplot2)
-total.steps <- tapply(data$steps, data$date, FUN=sum, na.rm=TRUE)
+total.steps <- tapply(activity$steps, activity$date, FUN=sum, na.rm=TRUE)
 qplot(total.steps, binwidth=1000, xlab="total number of steps taken each day")
 mean(total.steps, na.rm=TRUE)
 median(total.steps, na.rm=TRUE)
@@ -18,7 +18,7 @@ median(total.steps, na.rm=TRUE)
 ## What is the average daily activity pattern?
 ```{r}
 library(ggplot2)
-averages <- aggregate(x=list(steps=data$steps), by=list(interval=data$interval),
+averages <- aggregate(x=list(steps=activity$steps), by=list(interval=activity$interval),
                       FUN=mean, na.rm=TRUE)
 ggplot(data=averages, aes(x=interval, y=steps)) +
     geom_line() +
@@ -37,7 +37,7 @@ averages[which.max(averages$steps),]
 There are many days/intervals where there are missing values (coded as `NA`). The presence of missing days may introduce bias into some calculations or summaries of the data.
 
 ```{r how_many_missing}
-missing <- is.na(data$steps)
+missing <- is.na(activity$steps)
 # How many missing
 table(missing)
 ```
