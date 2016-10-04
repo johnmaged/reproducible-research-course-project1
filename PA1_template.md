@@ -1,13 +1,13 @@
-###### Reproducible Research: Peer Assessment 1
+## Reproducible Research: Peer Assessment 1
 
-###### Loading and preprocessing the data
+## Loading and preprocessing the data
 
 ```
 unzip(zipfile="activity.zip")
 data <- read.csv("activity.csv")
 ```
 
-###### What is mean total number of steps taken per day?
+## What is mean total number of steps taken per day?
 
 ```
 library(ggplot2)
@@ -18,7 +18,7 @@ median(total.steps, na.rm=TRUE)
 ```
 ![Figure 1](01.png)
 
-###### What is the average daily activity pattern?
+## What is the average daily activity pattern?
 
 ```
 library(ggplot2)
@@ -40,7 +40,7 @@ the maximum number of steps?
 averages[which.max(averages$steps),]
 ```
 
-###### Imputing missing values
+## Imputing missing values
 
 There are many days/intervals where there are missing values (coded as `NA`). The presence of missing days may introduce bias into some calculations or summaries of the data.
 
@@ -86,7 +86,7 @@ default. However, after replacing missing `steps` values with the mean `steps`
 of associated `interval` value, these 0 values are removed from the histogram
 of total number of steps taken each day.
 
-###### Are there differences in activity patterns between weekdays and weekends?
+## Are there differences in activity patterns between weekdays and weekends?
 
 First, let's find the day of the week for each measurement in the dataset. In
 this part, we use the dataset with the filled-in values.
